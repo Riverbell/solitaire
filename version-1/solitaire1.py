@@ -29,7 +29,7 @@ class Solitaire():
 			for col in range(colNum):
 				self.gameField[row].append([])
 				#s = str(row) + str(col)
-				s = ' - '
+				s = '   '
 				self.gameField[row][col] = s
 
 
@@ -56,6 +56,10 @@ class Solitaire():
 	def printGame(self):
 		print(self)
 
+	def printInstructions(self):
+		# prints the instructions of use
+		pass
+
 	def drawCard(self):
 		# draws one card from the deck and places it face up
 		pass
@@ -78,7 +82,7 @@ class Solitaire():
 		# maybe moveCard can check for children? if so fire this func
 		pass
 
-	def userInput(self):
+	def getuserInput(self):
 		# prompts the user for input
 		# fires checkUserInput
 		pass
@@ -101,10 +105,10 @@ class Solitaire():
 if __name__ == '__main__':
 	deck = Deck()
 	deck.createStdDeck()
-	deck.printDeck()
-	print("============= SHUFFLED DECK:")
+	#deck.printDeck()
+	#print("============= SHUFFLED DECK:")
 	deck.shuffleDeck()
-	deck.printDeck()
+	#deck.printDeck()
 
 	game = Solitaire(deck)
 	print("============= CREATED FIELD:")
