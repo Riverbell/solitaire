@@ -8,21 +8,20 @@ class Solitaire():
 	""" Gameplan with rules """
 	def __init__(self, deck):
 		self.gameField = []
-		#self.gameField = collections.defaultdict(list)
 
 	def __str__(self):
 		s = ""
-		i = 0
-		for l in self.gameField:
-			for j in self.gameField[i]:
-				s = s + str(j) + " "
-				#s = s + "\n"
+		count = 0
+		for row in self.gameField:
+			for col in self.gameField[count]:
+				s = s + str(col) + " "
+			# adds new line after each row
 			s = s + "\n"
-			i = i + 1
+			count = count + 1
 		return s
 		
 	def createGameField(self):
-		#creates a grid
+		#creates a grid with 7 columns and 9 rows
 		colNum = 7
 		rowNum = 9
 		for row in range(rowNum):
@@ -63,17 +62,39 @@ class Solitaire():
 
 	def checkIfValidMove(self):
 		# checks if the prompted move is valid
+		# the moved card must be one rank lower and different color
+		# if valid move, fire moveCard
 		pass
 
-	def placeCard(self):
+	def moveCard(self):
 		# places a card on top of the other
+		# only fired if the move is valid
 		pass
 
+	def checkCardChildren(self):
+		# or moveCardChilrden??
+		# checks if the card to move has children 
+		# if so, moves them along
+		# maybe moveCard can check for children? if so fire this func
+		pass
 
 	def userInput(self):
+		# prompts the user for input
+		# fires checkUserInput
 		pass
 
 	def checkUserInput(self):
+		# checks if the user input is valid
+		# if the coordinates are valid coordinates
+		pass
+
+	def checkWin(self):
+		# checks after each move if the user has won the game
+		# if game won, end the game
+		pass
+
+	def endGame(self):
+		# ends the game 
 		pass
 
 
