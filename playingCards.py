@@ -16,15 +16,18 @@ class Card():
 		self.checkSuit(suit)
 		self.checkColor()
 		self.checkFace()
-		self.faceDown = False
+		self.faceDown = True
 
 	def __str__(self):
 		""" Returns the attributes of the object as a string """
 		if self.faceDown == False:
-			s =  str(self.rank) + str(self.suit)[0]
+			if len(str(self.rank)) == 1:
+				s = ' ' + str(self.rank) + str(self.suit)[0].upper()
+			else:
+				s =  str(self.rank) + str(self.suit)[0].upper()
 			#+ " (" + str(self.color) + str(self.faceCard) + ") "
 		elif self.faceDown == True:
-			s = "00X"
+			s = "***"
 		return s
 
 	def checkRank(self, rank):
