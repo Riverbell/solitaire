@@ -241,24 +241,55 @@ class Solitaire():
 		# maybe moveCard can check for children? if so fire this func
 		pass
 
+	def openPrevCard(self,r,c):
+		if self.gameField[r-1][c] != '---':
+			self.gameField[r-1][c].flipCard()
+
+
 	def getuserInput(self):
 		# prompts the user for input
 		# fires checkUserInput
-		pass
+		validInput = False
+		while validInput == False:
+			print("\nWhat is your move?")
+			print("In the form: 'rowNumber,colNumber-rowNumber,colNumber' or 'draw'")
+			userInput = str(raw_input("Your move: "))
+			validInput = self.checkUserInput(userInput)
 
-	def checkUserInput(self):
+	def checkUserInput(self,userInput):
 		# checks if the user input is valid
 		# if the coordinates are valid coordinates
-		pass
+		
+		if userInput == "draw" or userInput == "Draw" or userInput == "D" or userInput == "d":
+			self.drawCard()
+			return True
+		elif userInput == "exit" or userInput == "Exit" or userInput == "e" or userInput == "E":
+			self.endGame()
+			return True
+		#elif userInput:
+		#	pass
+		else:
+			coord = re.split(r'[\D](?=[\d])', userInput)
+			#print(coord)
+			try:
+				self.checkIfValidMove(int(coord[0]),int(coord[1]),int(coord[2]),int(coord[3]))
+				return True
+			except:
+				print("Those were not valid coordinates")
+				return False
 
 	def checkWin(self):
 		# checks after each move if the user has won the game
 		# if game won, end the game
-		pass
+		if self.gameField[0][3].rank == 13 and self.gameField[0][4].rank == 13 and self.gameField[0][5].rank == 13 and self.gameField[0][6].rank == 13:
+			return True
+		else:
+			return False
 
 	def endGame(self):
 		# ends the game 
-		pass
+		print("Exits game.")
+		sys.exit()
 
 
 if __name__ == '__main__':
