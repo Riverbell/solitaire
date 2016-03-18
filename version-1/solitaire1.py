@@ -301,8 +301,20 @@ if __name__ == '__main__':
 	#deck.printDeck()
 
 	game = Solitaire(deck)
-	print("============= CREATED FIELD:")
-	print()
+	#game.printDeck()
+	#print("============= CREATED FIELD:")
+	#print("")
+	gameWon = False
 	game.createGameField()
 	game.placeCards()
-	game.printGame()
+
+	while gameWon == False:
+		game.printGame()
+		game.getuserInput()
+		gameWon = game.checkWin()
+	if gameWon == True:
+		print("Congratulations, you won!")
+		game.endGame()
+
+
+	
