@@ -22,7 +22,10 @@ class Card():
 		""" Returns the attributes of the object as a string """
 		if self.faceDown == False:
 			if len(str(self.rank)) == 1:
-				s = ' ' + str(self.rank) + str(self.suit)[0].upper()
+				if self.rank == 0:
+					s = ' ' + str(self.suit)[0].upper() + ' '
+				else:
+					s = ' ' + str(self.rank) + str(self.suit)[0].upper()
 			else:
 				s =  str(self.rank) + str(self.suit)[0].upper()
 			#+ " (" + str(self.color) + str(self.faceCard) + ") "
@@ -34,12 +37,12 @@ class Card():
 		# checks if the rank of the card is valid
 		try:
 			rank = int(rank)
-			if rank < 14 and rank > 0:
+			if rank < 14 and rank >= 0:
 				self.rank = rank
 			else: 
 				raise ValueError('That is not a valid card rank')
 		except ValueError as error:
-			print('caught this error: ' + error)
+			print('caught this error: ' + str(error))
 
 
 	def checkSuit(self, suit):
@@ -56,7 +59,7 @@ class Card():
 			else:
 				raise ValueError('That is not a valid suit')
 		except ValueError as error:
-			print('Caught this error: ' + error)
+			print('Caught this error: ' + str(error))
 
 
 	def checkColor(self):
@@ -92,6 +95,10 @@ class Deck():
 		self.tempDeck = []
 		self.deck = LinkedQ()
 
+	def __str__(self):
+		"""Returns a string with the users input"""
+		return str(self.deck)
+
 	def printDeck(self):
 		print(self.deck)
 
@@ -102,7 +109,7 @@ class Deck():
 			for i in range(1,14):
 				newCard = Card(i, suit)
 				self.tempDeck.append(newCard)
-				self.deck.put(newCard)
+				self.putCard(newCard)
 
 	def shuffleDeck(self):
 		# Shuffles the deck randomly
