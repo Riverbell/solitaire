@@ -114,7 +114,16 @@ class Deck():
 	def sortDeck(self):
 		pass
 
-	def drawCard(self):
+	def getCard(self):
 		card = self.deck.get()
 		#print(card)
 		return card
+
+	def putCard(self,card):
+		self.deck.put(card)
+
+	def peekCard(self):
+		card = self.deck.peek()
+		return card
+
+
