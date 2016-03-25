@@ -138,20 +138,23 @@ class Solitaire():
 	def recycleWaste(self):
 		# called if the deck is empty
 		# puts the cards in waste pile back into the deck 
-		print("Empty deck - time to recycle!")
-		tempWaste = StackQ()
-		while self.wastePile.isEmpty() != True:
-			card = self.wastePile.get()
-			tempWaste.put(card)
-		while tempWaste.isEmpty() != True:
-			card = tempWaste.get()
-			self.deck.putCard(card.flipCard())
+		if self.wastePile.isEmpty() != True:
+			print("Empty deck - time to recycle!")
+			tempWaste = StackQ()
+			while self.wastePile.isEmpty() != True:
+				card = self.wastePile.get()
+				tempWaste.put(card)
+			while tempWaste.isEmpty() != True:
+				card = tempWaste.get()
+				self.deck.putCard(card.flipCard())
 
-		print("Recycling done. Wastepile:")
-		print(self.wastePile)
-		print("Deck:")
-		print(self.deck)
-		self.drawCard()
+			print("Recycling done. Wastepile:")
+			print(self.wastePile)
+			print("Deck:")
+			print(self.deck)
+			self.drawCard()
+		elif self.wastePile.isEmpty() == True:
+			print("No more cards!")
 
 
 	def checkIfValidMove(self,r1,c1,r2,c2):
