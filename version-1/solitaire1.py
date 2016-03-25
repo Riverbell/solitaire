@@ -231,19 +231,35 @@ class Solitaire():
 		else:
 			self.gameField[r1][c1] = self.emptyCardSlot
 			self.openPrevCard(r1,c1)
+			rr2 = r2
+			while self.checkCardChildren(r1,c1):
+				print("In while")
+				self.gameField[rr2+1][c2] = self.gameField[r1+1][c1]
+				self.gameField[r1+1][c1] = self.emptyCardSlot
+				r1 = r1 + 1
+				rr2 = rr2 + 1
+			
 		self.gameField[r2][c2] = movingCard
 		
 
-	def checkCardChildren(self):
+	def checkCardChildren(self,r1,c1):
 		# or moveCardChilrden??
 		# checks if the card to move has children 
 		# if so, moves them along
 		# maybe moveCard can check for children? if so fire this func
-		pass
+		print("Children function!")
+		if self.gameField[r1+1][c1] != self.emptyCardSlot:
+			print(str(self.gameField[r1][c1]) + " has children. Position: " + str(r1) + "," + str(c1))
+			return True
+		else:
+			print(str(self.gameField[r1][c1]) + "has no children. Position" + str(r1) + "," + str(c1))
+			return False
+			
 
 	def openPrevCard(self,r,c):
 		if self.gameField[r-1][c] != '---':
-			self.gameField[r-1][c].flipCard()
+			if self.gameField[r-1][c].faceDown == True:
+				self.gameField[r-1][c].flipCard()
 
 
 	def getuserInput(self):
