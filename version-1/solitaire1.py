@@ -293,7 +293,7 @@ class Solitaire():
 			try:
 				self.checkIfValidMove(int(coord[0]),int(coord[1]),int(coord[2]),int(coord[3]))
 				return True
-			except:
+			except ValueError:
 				print("Those were not valid coordinates")
 				return False
 
